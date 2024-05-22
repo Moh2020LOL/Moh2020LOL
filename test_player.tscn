@@ -1,0 +1,420 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://3d player/player.gd" type="Script" id=1]
+[ext_resource path="res://door.gd" type="Script" id=2]
+[ext_resource path="res://tp/teleporter_black.tscn" type="PackedScene" id=3]
+[ext_resource path="res://doors/button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://doors/door_button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://doors/mass.tscn" type="PackedScene" id=6]
+[ext_resource path="res://doors/door_mass.tscn" type="PackedScene" id=7]
+[ext_resource path="res://PNG/Dark/texture_03.png" type="Texture" id=8]
+[ext_resource path="res://box/box.tscn" type="PackedScene" id=9]
+[ext_resource path="res://magent.tscn" type="PackedScene" id=10]
+[ext_resource path="res://magent/button_magent.tscn" type="PackedScene" id=11]
+[ext_resource path="res://env.tres" type="Environment" id=12]
+
+[sub_resource type="CapsuleMesh" id=1]
+mid_height = 2.0
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CapsuleShape" id=3]
+height = 2.0
+
+[sub_resource type="PrismMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_color = Color( 0.0156863, 0.0156863, 0.0156863, 0.305882 )
+async_mode = 1
+
+[sub_resource type="PhysicsMaterial" id=32]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.168627, 0.168627, 0.168627, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.2
+emission_operator = 0
+emission_on_uv2 = true
+anisotropy_enabled = true
+anisotropy = 1.0
+depth_enabled = true
+depth_scale = 16.0
+depth_deep_parallax = false
+depth_flip_tangent = false
+depth_flip_binormal = false
+uv2_triplanar = true
+uv2_triplanar_sharpness = 0.138696
+
+[sub_resource type="CubeMesh" id=11]
+material = SubResource( 8 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="ArrayMesh" id=26]
+surfaces/0 = {
+"aabb": AABB( -0.528867, -0.528867, -0.528867, 1.05773, 1.05774, 1.05774 ),
+"array_data": PoolByteArray( 220, 99, 7, 191, 220, 99, 7, 63, 220, 99, 7, 63, 0, 0, 127, 64, 0, 0, 0, 0, 220, 99, 7, 63, 220, 99, 7, 63, 220, 99, 7, 191, 127, 127, 129, 64, 85, 57, 0, 0, 220, 99, 7, 63, 220, 99, 7, 63, 220, 99, 7, 63, 0, 0, 127, 64, 85, 53, 0, 0, 220, 99, 7, 191, 220, 99, 7, 63, 220, 99, 7, 191, 127, 127, 129, 64, 0, 60, 0, 0, 220, 99, 7, 191, 220, 99, 7, 191, 220, 99, 7, 63, 0, 0, 127, 64, 0, 0, 0, 56, 220, 99, 7, 63, 220, 99, 7, 191, 220, 99, 7, 191, 127, 127, 129, 64, 85, 57, 0, 56, 220, 99, 7, 63, 220, 99, 7, 191, 220, 99, 7, 63, 0, 0, 127, 64, 85, 53, 0, 56, 220, 99, 7, 191, 220, 99, 7, 191, 220, 99, 7, 191, 127, 127, 129, 64, 0, 60, 0, 56, 220, 99, 7, 63, 220, 99, 7, 63, 220, 99, 7, 63, 127, 0, 127, 127, 85, 53, 0, 0, 220, 99, 7, 191, 220, 99, 7, 63, 220, 99, 7, 191, 129, 0, 0, 63, 0, 0, 0, 56, 220, 99, 7, 63, 220, 99, 7, 63, 220, 99, 7, 191, 127, 0, 127, 127, 85, 57, 0, 0, 220, 99, 7, 191, 220, 99, 7, 63, 220, 99, 7, 63, 129, 0, 0, 63, 85, 53, 0, 56, 220, 99, 7, 63, 220, 99, 7, 191, 220, 99, 7, 63, 127, 0, 127, 127, 85, 53, 0, 56, 220, 99, 7, 191, 220, 99, 7, 191, 220, 99, 7, 191, 129, 0, 0, 63, 0, 0, 0, 60, 220, 99, 7, 63, 220, 99, 7, 191, 220, 99, 7, 191, 127, 0, 127, 127, 85, 57, 0, 56, 220, 99, 7, 191, 220, 99, 7, 191, 220, 99, 7, 63, 129, 0, 0, 63, 85, 53, 0, 60, 220, 99, 7, 63, 220, 99, 7, 63, 220, 99, 7, 63, 0, 127, 129, 64, 85, 53, 0, 56, 220, 99, 7, 191, 220, 99, 7, 191, 220, 99, 7, 63, 0, 129, 127, 64, 85, 57, 0, 56, 220, 99, 7, 191, 220, 99, 7, 63, 220, 99, 7, 63, 0, 127, 129, 64, 85, 57, 0, 56, 220, 99, 7, 63, 220, 99, 7, 191, 220, 99, 7, 63, 0, 129, 127, 64, 0, 60, 0, 56, 220, 99, 7, 63, 220, 99, 7, 63, 220, 99, 7, 191, 0, 127, 129, 64, 85, 53, 0, 60, 220, 99, 7, 191, 220, 99, 7, 191, 220, 99, 7, 191, 0, 129, 127, 64, 85, 57, 0, 60, 220, 99, 7, 191, 220, 99, 7, 63, 220, 99, 7, 191, 0, 127, 129, 64, 85, 57, 0, 60, 220, 99, 7, 63, 220, 99, 7, 191, 220, 99, 7, 191, 0, 129, 127, 64, 0, 60, 0, 60 ),
+"array_index_data": PoolByteArray( 0, 0, 4, 0, 2, 0, 2, 0, 4, 0, 6, 0, 1, 0, 5, 0, 3, 0, 3, 0, 5, 0, 7, 0, 8, 0, 12, 0, 10, 0, 10, 0, 12, 0, 14, 0, 9, 0, 13, 0, 11, 0, 11, 0, 13, 0, 15, 0, 16, 0, 20, 0, 18, 0, 18, 0, 20, 0, 22, 0, 17, 0, 21, 0, 19, 0, 19, 0, 21, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 36,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="SpatialMaterial" id=27]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=28]
+points = PoolVector3Array( -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5 )
+
+[sub_resource type="PhysicsMaterial" id=30]
+rough = true
+bounce = 0.28
+absorbent = true
+
+[sub_resource type="PrismMesh" id=38]
+size = Vector3( 2, 2, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="CubeMesh" id=13]
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=16]
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_color = Color( 1, 0.6, 0.427451, 1 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 1.29716, 2.66268, 0.390521 )
+
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 90, 0 ) ]
+}
+
+[sub_resource type="BoxShape" id=20]
+extents = Vector3( 0.876983, 0.258423, 1.78184 )
+
+[sub_resource type="SpatialMaterial" id=31]
+albedo_texture = ExtResource( 8 )
+uv1_scale = Vector3( 16, 5, 16 )
+
+[sub_resource type="PhysicsMaterial" id=33]
+
+[sub_resource type="PhysicsMaterial" id=34]
+
+[sub_resource type="ViewportTexture" id=35]
+viewport_path = NodePath("marrior/Viewport")
+
+[sub_resource type="SpatialMaterial" id=36]
+resource_local_to_scene = true
+albedo_texture = SubResource( 35 )
+
+[sub_resource type="PlaneMesh" id=37]
+resource_local_to_scene = true
+material = SubResource( 36 )
+size = Vector2( 16, 9 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="player" type="KinematicBody" parent="." groups=["player"]]
+transform = Transform( 0.648136, 0, 0, 0, 0.757253, 0, 0, 0, 0.718382, 0, 3.79203, 0 )
+script = ExtResource( 1 )
+outline = true
+Nuoten = 20.0
+ampl = 0.176
+
+[node name="CSGMesh" type="CSGMesh" parent="player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="head" type="Spatial" parent="player"]
+transform = Transform( 0.985013, 0, 0, 0, 1.01138, 0, 0, 0, 1.00794, 0, 1.25095, -0.341434 )
+
+[node name="Camera" type="Camera" parent="player/head"]
+transform = Transform( 1.54289, 0, 0, 0, 1.32056, 0, 0, 0, 1.39202, 0.314592, -0.534668, 0 )
+cull_mask = 1048573
+current = true
+fov = 90.0
+
+[node name="CSGMesh" type="CSGMesh" parent="player/head/Camera"]
+transform = Transform( 0.031494, 0, 0, 0, 0.0311578, 0, 0, 0, 0.0179652, 0, 0, -0.473972 )
+mesh = SubResource( 4 )
+material = SubResource( 5 )
+
+[node name="pick_up" type="Spatial" parent="player/head/Camera"]
+transform = Transform( -0.628732, 0, -5.86788e-08, 0, 0.757253, 0, 6.09227e-08, 0, -0.743953, 0.0204833, -0.0491314, -0.338445 )
+
+[node name="hand" type="Position3D" parent="player/head/Camera/pick_up"]
+transform = Transform( 0.999999, 0, -8.52651e-14, 0, 1, 0, -4.9738e-14, 0, 1, -4.09782e-07, 0, 4.45357 )
+
+[node name="RayCast" type="RayCast" parent="player/head/Camera/pick_up"]
+transform = Transform( 1, 0, 2.13163e-14, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 5 )
+
+[node name="SpotLight" type="SpotLight" parent="player/head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0706638, -0.442538, -0.367892 )
+visible = false
+light_energy = 3.701
+light_size = 1.759
+light_bake_mode = 2
+shadow_enabled = true
+spot_range = 22.686
+spot_attenuation = 0.277392
+spot_angle_attenuation = 0.0743254
+
+[node name="Spatial" type="Spatial" parent="player/head"]
+
+[node name="Position3D" type="Position3D" parent="player/head/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.315, -0.535, -0.66 )
+
+[node name="Spatial2" type="Spatial" parent="player/head"]
+
+[node name="Tween" type="Tween" parent="player"]
+
+[node name="RayCast" type="RayCast" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12413, 0 )
+enabled = true
+
+[node name="RigidBody" type="RigidBody" parent="." groups=["box"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18682, 3.10476, -2.03589 )
+mode = 2
+mass = 25.0
+physics_material_override = SubResource( 32 )
+linear_damp = 1.0
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+mesh = SubResource( 11 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody/MeshInstance"]
+visible = false
+mesh = SubResource( 26 )
+material/0 = SubResource( 27 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 28 )
+
+[node name="RigidBody2" type="RigidBody" parent="." groups=["box"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62544, 3.18868, -2.14958 )
+mode = 2
+mass = 10.0
+physics_material_override = SubResource( 30 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
+mesh = SubResource( 11 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody2/MeshInstance"]
+visible = false
+mesh = SubResource( 26 )
+material/0 = SubResource( 27 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
+shape = SubResource( 28 )
+
+[node name="Camera" type="Camera" parent="RigidBody2"]
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1366, 7.64955 )
+mesh = SubResource( 38 )
+material = SubResource( 6 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="." groups=["obj"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.499, -7.314 )
+layers = 3
+mesh = SubResource( 7 )
+material = SubResource( 8 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, -4.39411e-08, 0.864503, 0.502628, 7.55772e-08, 0.502628, -0.864503, 0.568295, 28.3846, -50.2692 )
+shadow_enabled = true
+
+[node name="Spatial2" type="Spatial" parent="."]
+
+[node name="door" type="StaticBody" parent="Spatial2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0592594, 3.55177, -16.4615 )
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial2/door"]
+transform = Transform( 1.45725, 0, 0, 0, 2.69228, 0, 0, 0, 0.38978, 0.981472, -0.389071, -0.363138 )
+mesh = SubResource( 13 )
+skeleton = NodePath("")
+material/0 = SubResource( 14 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Spatial2/door"]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.69258, 0, 0.0452118 )
+mesh = SubResource( 16 )
+skeleton = NodePath("")
+material/0 = SubResource( 17 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial2/door"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.856439, -0.391325, -0.369043 )
+shape = SubResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial2/door"]
+anims/RESET = SubResource( 21 )
+anims/close = SubResource( 23 )
+anims/open = SubResource( 22 )
+
+[node name="Area" type="Area" parent="Spatial2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18723, 1.40408, -14.337 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial2/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.528955, -0.245768 )
+shape = SubResource( 20 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+width = 21.9796
+depth = 71.1724
+material = SubResource( 31 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.853195, 2.98352, -17.1595 )
+height = 5.08935
+depth = 24.6503
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/CSGBox"]
+transform = Transform( -4.8152e-08, 0, 0.38978, 0, 2.69228, 0, -1.10159, 0, -1.70378e-08, -0.750011, 0, -4.17233e-07 )
+operation = 2
+width = 2.56543
+depth = 17.8328
+
+[node name="teleporter_black" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94342, 5.23798, -28.7844 )
+go_to = NodePath("../teleporter_black2")
+
+[node name="teleporter_black2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.66313, 5.23798, -28.7844 )
+go_to = NodePath("../teleporter_black")
+
+[node name="door_button" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.217491, 0, 1.98814, 0, 2, 0, -1.98814, 0, -0.217491, -8.09215, 3.01683, -12.9292 )
+button_path = NodePath("../button")
+
+[node name="button" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.628732, 0, 0, 0, 0.757253, 0, 0, 0, 0.743953, -3.1052, 2.71127, -16.0696 )
+door_path = NodePath("../door_button")
+
+[node name="door_button2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.217491, 0, 1.98814, 0, 2, 0, -1.98814, 0, -0.217491, -8.09215, 3.01683, -7.29015 )
+button_path = NodePath("../button2")
+
+[node name="button2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.628732, 0, 0, 0, 0.757253, 0, 0, 0, 0.743953, -3.1052, 2.71127, -10.4305 )
+door_path = NodePath("../door_button2")
+
+[node name="door_mass" parent="." instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -2.47635, 3.1575, 13.4729 )
+mass_path = NodePath("../mass")
+
+[node name="mass" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0695691, 1.08389, 5.28087 )
+
+[node name="door_mass2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 4.51697, 3.1575, 13.4729 )
+mass_path = NodePath("../mass2")
+
+[node name="mass2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.68345, 1.08389, 5.28823 )
+
+[node name="box" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62037, 2.19038, -4.73856 )
+mode = 2
+mass = 5.0
+physics_material_override = SubResource( 33 )
+
+[node name="magent" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9913, 4.14789, -10.9991 )
+physics_material_override = SubResource( 34 )
+button_path = NodePath("../button_magent")
+bodies = [ NodePath("../box"), NodePath("../player") ]
+stronge_magint = 1000.0
+if_want_button = true
+mass_kinematicbody = 100.0
+
+[node name="button_magent" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42099, 3.10876, -1.64956 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 12 )
+
+[node name="marrior" type="Spatial" parent="."]
+transform = Transform( -0.00417128, 0, 0.999991, 0, 1, 0, -0.999991, 0, -0.00417128, -6.66595, 4.09524, 1.68507 )
+
+[node name="Viewport" type="Viewport" parent="marrior"]
+size = Vector2( 1280, 720 )
+render_target_v_flip = true
+
+[node name="Camera" type="Camera" parent="marrior/Viewport"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.06119, 3.34106, 1.7427 )
+current = true
+fov = 90.0
+
+[node name="marrior_texutre" type="MeshInstance" parent="marrior"]
+transform = Transform( 1, 2.79397e-09, -8.32667e-17, 0, -4.37114e-08, -1, -2.79397e-09, 1, -4.37114e-08, 0.00580478, 1.61642, -1.39159 )
+mesh = SubResource( 37 )
+
+[connection signal="body_entered" from="Spatial2/Area" to="Spatial2/door" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Spatial2/Area" to="Spatial2/door" method="_on_Area_body_exited"]

@@ -1,10 +1,7 @@
-- 👋 Hi, I’m @Moh2020LOL
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
+# Godot Camera Shake
+A simple camera shake system based on the [GDC talk by SMU Guildhall's Squirrel Eiserloh](https://www.youtube.com/watch?v=tu-Qe66AvtY&list=WL&index=18&t=968s&ab_channel=GDC).
 
-<!---
-Moh2020LOL/Moh2020LOL is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+## How it works.
+
+The camera script has a stress value that determines the level of camera shake (shake = stress ^ 2). The stress value is clamped between 0 and 1. The shake is based on a max value, the shake variable and a simplex noise sample.
+

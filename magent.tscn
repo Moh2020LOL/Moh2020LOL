@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://magent.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+params_diffuse_mode = 4
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 1, 2, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -0.5, -0.985196, -0.985196, 0.5, 0.954308, 0.954308, 0.5, 0.954308, -0.954308, -0.5, 0.985196, 0.985196, 0.5, -0.954494, 0.954494, -0.5, 0.985196, -0.985196, -0.5, -0.985196, 0.985196, 0.5, -0.954494, -0.954494 )
+
+[sub_resource type="SpatialMaterial" id=4]
+params_diffuse_mode = 4
+albedo_color = Color( 0.101961, 0, 1, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
+size = Vector3( 1, 2, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=6]
+points = PoolVector3Array( -0.5, -0.985196, -0.985196, 0.5, 0.954308, 0.954308, 0.5, 0.954308, -0.954308, -0.5, 0.985196, 0.985196, 0.5, -0.954494, 0.954494, -0.5, 0.985196, -0.985196, -0.5, -0.985196, 0.985196, 0.5, -0.954494, -0.954494 )
+
+[sub_resource type="SphereShape" id=7]
+radius = 10.4473
+
+[node name="magent" type="StaticBody"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.483458, 0, -1.06692e-05 )
+mesh = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.483458, 0, -1.06692e-05 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.483, 0, 0 )
+mesh = SubResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.483, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

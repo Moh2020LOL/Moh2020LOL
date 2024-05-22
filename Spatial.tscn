@@ -1,0 +1,188 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://RigidBody.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="PhysicsMaterial" id=12]
+rough = true
+bounce = 0.49
+absorbent = true
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+uniform float time_offset : hint_range(0.0, 1.0, 0.001) = 1.0;
+uniform float dissolve_speed = 1.0;
+
+float random_coord(vec2 co) {
+    return fract(sin(dot(co.xy, vec2(12.9898,96.233))) * 43758.5453);
+}
+
+void fragment() {
+	vec2 texture_resolution = 1.0 / TEXTURE_PIXEL_SIZE;
+	vec2 pixel_within_texture = floor(UV * texture_resolution);
+	vec4 texture_color = texture(TEXTURE, UV);
+
+	if (sin((TIME * dissolve_speed) + time_offset) < random_coord(pixel_within_texture)) {
+		// Set to the original texture color
+//		COLOR = texture_color;
+		// Set to a new color
+		COLOR = vec4(0.0, 0.0, 0.0, 0.0); 
+	}
+	else {
+		// German flag
+		if (UV.y < 0.33) {
+			COLOR.r = 0.0;
+			COLOR.g = 0.0;
+			COLOR.b = 0.0;
+		} 
+		else if (UV.y < 0.66) {
+			COLOR.r = 1.0;
+		}
+		else {
+			COLOR.r = 1.0;
+			COLOR.g = 1.0;
+		}
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/time_offset = 1.0
+shader_param/dissolve_speed = 1.0
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.274756
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.754192, 0.25919, 0.34006 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.255827, 0.588472, 0.426116 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 4.72105, 0.902974, 2.65071 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Environment" id=10]
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 2, 24, 2 )
+subdivide_width = 20
+
+[node name="Spatial" type="Spatial"]
+
+[node name="CSGBox5" type="CSGBox" parent="."]
+transform = Transform( 0.997461, -0.0712189, 0, 0.0712189, 0.997461, 0, 0, 0, 1, 0.451662, 0.646493, 0 )
+width = 1.43774
+height = 0.54854
+depth = 0.661547
+material = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0555196, 2.38924, 4.49968 )
+current = true
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20764, 4.08389, 0 )
+mass = 0.16
+physics_material_override = SubResource( 12 )
+gravity_scale = 9.8
+script = ExtResource( 1 )
+
+[node name="SpotLight" type="SpotLight" parent="RigidBody"]
+light_color = Color( 1, 0, 0, 1 )
+shadow_enabled = true
+shadow_color = Color( 1, 0.992157, 0, 1 )
+
+[node name="CSGSphere" type="CSGSphere" parent="RigidBody"]
+radius = 0.308969
+material = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.996581, -0.0826169, 0, 0.0826169, 0.996581, 0, 0, 0, 1, 1.6709, 1.53571, 0.000756025 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.932229, -0.361869, 0, 0.361869, 0.932229, 0, 0, 0, 1, 2.19606, 3.28906, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.660356, -0.750953, 0, 0.750953, 0.660356, 0, 0, 0, 1, -0.0188708, 2.69214, 0.0241139 )
+shape = SubResource( 5 )
+
+[node name="CSGBox2" type="CSGBox" parent="StaticBody"]
+transform = Transform( 0.932229, -0.361869, 0, 0.361869, 0.932229, 0, 0, 0, 1, 2.19606, 3.28906, 0 )
+width = 1.43774
+height = 0.54854
+depth = 0.661547
+material = SubResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="StaticBody"]
+transform = Transform( 0.781172, 0.624316, 0, -0.624316, 0.781172, 0, 0, 0, 1, -0.086882, 2.6979, 0 )
+width = 1.43774
+height = 0.54854
+depth = 0.661547
+material = SubResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="StaticBody"]
+transform = Transform( 0.996475, -0.0838866, 0, 0.0838866, 0.996475, 0, 0, 0, 1, 1.62907, 1.5245, 0 )
+width = 1.63149
+height = 0.54854
+depth = 0.661547
+material = SubResource( 1 )
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00403166, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="StaticBody2"]
+width = 31.7945
+height = 0.636225
+depth = 5.46176
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125198, -0.0418365, 0.0143867 )
+shape = SubResource( 6 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3 )
+width = 30.0
+height = 8.0
+material = SubResource( 9 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.809263, 0.587446, 0, -0.587446, 0.809263, 2.1369, 10.0983, 11.2227 )
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 10 )
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.39517, 3.19784, 0.00452137 )
+visible = false
+amount = 100
+lifetime = 3.88
+speed_scale = 0.6
+explosiveness = 1.0
+local_coords = false
+mesh = SubResource( 11 )
+flag_align_y = true
+flag_rotate_y = true
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+orbit_velocity_curve = null
+tangential_accel = 30.0
+scale_amount = 0.5
+color = Color( 1, 0, 0, 1 )
